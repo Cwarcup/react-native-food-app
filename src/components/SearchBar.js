@@ -1,7 +1,11 @@
 import { View, Text, StyleSheet, TextInput } from "react-native"
 import Search from "react-native-vector-icons/MaterialIcons"
+import { useContext } from "react"
+import { SearchContext } from "../context/SearchContext"
 
 const SearchBar = () => {
+  const { term, setTerm } = useContext(SearchContext)
+
   return (
     <View style={styles.backgroundStyle}>
       <Search name="search" style={styles.iconStyle} />
@@ -11,6 +15,8 @@ const SearchBar = () => {
         placeholderTextColor="grey"
         autoCapitalize="true"
         autoCorrect={false}
+        value={term}
+        onChangeText={(newTerm) => setTerm(newTerm)}
       ></TextInput>
     </View>
   )
