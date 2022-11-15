@@ -2,33 +2,16 @@ import { View, Text, StyleSheet, FlatList } from "react-native"
 import SearchBar from "../components/SearchBar"
 import { useContext, useState, useEffect } from "react"
 import { SearchContext } from "../context/SearchContext"
-import yelp from "../api/yelp"
+import useBusinesses from "../hooks/useBusinesses"
 
 const SearchScreen = () => {
   const { searchTerm } = useContext(SearchContext)
 
-  const [results, setResults] = useState([])
-  const [errorMessage, setErrorMessage] = useState("")
-
-  const searchApi = async () => {
-    try {
-      const response = await yelp.get("/search", {
-        params: {
-          limit: 5,
-          term: searchTerm,
-          location: "Vancouver",
-        },
-      })
-
-      setResults(response.data.businesses)
-    } catch (err) {
-      console.log(err)
-      setErrorMessage("Something went wrong")
-    }
-  }
+  // custom hook to make the api request
+  const [searchApi, results, errorMessage] = useBusinesses(searchTerm)
 
   useEffect(() => {
-    searchApi()
+    searchApi(searchTerm)
   }, [searchTerm])
 
   const RenderItem = ({ item }) => {
@@ -41,7 +24,7 @@ const SearchScreen = () => {
 
   return (
     <View style={styles.backgroundStyle}>
-      <SearchBar term={searchTerm} />
+      <SearchBar />
 
       <Text>We have found {results.length} results</Text>
       {errorMessage ? (
