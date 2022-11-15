@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 
 export const SearchContext = createContext({
   term: "",
@@ -7,9 +7,16 @@ export const SearchContext = createContext({
 
 export const SearchProvider = ({ children }) => {
   const [term, setTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useState("")
+
+  useEffect(() => {
+    setSearchTerm("Pizza")
+  }, [])
 
   return (
-    <SearchContext.Provider value={{ term, setTerm }}>
+    <SearchContext.Provider
+      value={{ term, setTerm, searchTerm, setSearchTerm }}
+    >
       {children}
     </SearchContext.Provider>
   )

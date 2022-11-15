@@ -4,7 +4,7 @@ import { useContext } from "react"
 import { SearchContext } from "../context/SearchContext"
 
 const SearchBar = () => {
-  const { term, setTerm } = useContext(SearchContext)
+  const { term, setTerm, setSearchTerm } = useContext(SearchContext)
 
   return (
     <View style={styles.backgroundStyle}>
@@ -17,7 +17,8 @@ const SearchBar = () => {
         autoCorrect={false}
         value={term}
         onChangeText={(newTerm) => setTerm(newTerm)}
-      ></TextInput>
+        onEndEditing={() => setSearchTerm(term)}
+      />
     </View>
   )
 }
