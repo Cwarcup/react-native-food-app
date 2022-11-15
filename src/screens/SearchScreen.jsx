@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, FlatList } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
 import SearchBar from "../components/SearchBar"
-import { useContext, useState, useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { SearchContext } from "../context/SearchContext"
 import useBusinesses from "../hooks/useBusinesses"
+import BusinessResultsList from "../components/BusinessResultsList"
 
 const SearchScreen = () => {
   const { searchTerm } = useContext(SearchContext)
@@ -14,28 +15,29 @@ const SearchScreen = () => {
     searchApi(searchTerm)
   }, [searchTerm])
 
-  const RenderItem = ({ item }) => {
-    return (
-      <View>
-        <Text>{item.name}</Text>
-      </View>
-    )
+  console.log({ results })
+
+  const filterResultsByPrice = (price) => {
+    return results.filter((result) => result.price === price)
   }
 
   return (
     <View style={styles.backgroundStyle}>
       <SearchBar />
-
       <Text>We have found {results.length} results</Text>
-      {errorMessage ? (
-        <Text>{errorMessage}</Text>
-      ) : (
-        <FlatList
-          data={results}
-          keyExtractor={(result) => result.id}
-          renderItem={RenderItem}
-        />
-      )}
+      {errorMessage ? <Text>{errorMessage}</Text> : null}
+      <BusinessResultsList
+        title="Cost Effective"
+        results={filterResultsByPrice("$")}
+      />
+      <BusinessResultsList
+        title="Bit Pricier"
+        results={filterResultsByPrice("$$")}
+      />
+      <BusinessResultsList
+        title="Big Spender"
+        results={filterResultsByPrice("$$$")}
+      />
     </View>
   )
 }
