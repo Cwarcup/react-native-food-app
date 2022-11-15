@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, ScrollView } from "react-native"
 import SearchBar from "../components/SearchBar"
 import { useContext, useEffect } from "react"
 import { SearchContext } from "../context/SearchContext"
@@ -28,18 +28,24 @@ const SearchScreen = () => {
         We have found {results.length} results
       </Text>
       {errorMessage ? <Text>{errorMessage}</Text> : null}
-      <BusinessResultsList
-        title="Cost Effective"
-        results={filterResultsByPrice("$")}
-      />
-      <BusinessResultsList
-        title="Bit Pricier"
-        results={filterResultsByPrice("$$")}
-      />
-      <BusinessResultsList
-        title="Big Spender"
-        results={filterResultsByPrice("$$$")}
-      />
+      <ScrollView>
+        <BusinessResultsList
+          title="Cost Effective"
+          results={filterResultsByPrice("$")}
+        />
+        <BusinessResultsList
+          title="Bit Pricier"
+          results={filterResultsByPrice("$$")}
+        />
+        <BusinessResultsList
+          title="Big Spender"
+          results={filterResultsByPrice("$$$")}
+        />
+        <BusinessResultsList
+          title="Ballin'"
+          results={filterResultsByPrice("$$$$")}
+        />
+      </ScrollView>
     </View>
   )
 }
@@ -47,6 +53,7 @@ const SearchScreen = () => {
 const styles = StyleSheet.create({
   backgroundStyle: {
     backgroundColor: "white",
+    flex: 1,
   },
   resultText: {
     marginLeft: 10,

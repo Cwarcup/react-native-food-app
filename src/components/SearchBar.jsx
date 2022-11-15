@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput } from "react-native"
+import { View, StyleSheet, TextInput } from "react-native"
 import Search from "react-native-vector-icons/MaterialIcons"
 import { useContext } from "react"
 import { SearchContext } from "../context/SearchContext"
