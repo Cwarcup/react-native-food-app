@@ -24,7 +24,9 @@ const SearchScreen = () => {
   return (
     <View style={styles.backgroundStyle}>
       <SearchBar />
-      <Text>We have found {results.length} results</Text>
+      <Text style={styles.resultText}>
+        We have found {results.length} results
+      </Text>
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <BusinessResultsList
         title="Cost Effective"
@@ -45,6 +47,10 @@ const SearchScreen = () => {
 const styles = StyleSheet.create({
   backgroundStyle: {
     backgroundColor: "white",
+  },
+  resultText: {
+    marginLeft: 10,
+    marginBottom: 5,
   },
 })
 

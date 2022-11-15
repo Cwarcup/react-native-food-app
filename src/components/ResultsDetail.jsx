@@ -17,7 +17,8 @@ export default ResultsDetail
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 15,
+    marginLeft: 10,
+    marginBottom: 10,
   },
   image: {
     width: 250,
