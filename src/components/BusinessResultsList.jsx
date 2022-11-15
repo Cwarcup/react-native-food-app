@@ -1,7 +1,12 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
-import { FlatList } from "react-native-gesture-handler"
-import ResultsDetail from "./ResultsDetail"
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+} from "react-native"
 import { withNavigation } from "react-navigation"
+import ResultsDetail from "./ResultsDetail"
 
 const BusinessResultsList = ({ title, results, navigation }) => {
   if (!results.length) {

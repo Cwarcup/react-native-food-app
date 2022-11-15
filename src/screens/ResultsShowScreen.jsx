@@ -39,8 +39,6 @@ const ResultsShowScreen = ({ navigation }) => {
   )
 }
 
-export default ResultsShowScreen
-
 const styles = StyleSheet.create({
   image: {
     height: 200,
@@ -51,3 +49,5 @@ const styles = StyleSheet.create({
     color: "grey",
   },
 })
+
+export default ResultsShowScreen

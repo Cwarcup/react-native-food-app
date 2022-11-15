@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import yelp from "../api/yelp"
 
 export default () => {
+  // results: array of businesses returned from the API
   const [results, setResults] = useState([])
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -19,12 +20,13 @@ export default () => {
 
       setResults(response.data.businesses)
     } catch (err) {
-      console.log(err)
+      console.error(err)
       setErrorMessage("Something went wrong")
     }
   }
 
   useEffect(() => {
+    // default search term
     searchApi("Pasta")
   }, [])
 

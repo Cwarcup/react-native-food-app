@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native"
-import SearchBar from "../components/SearchBar"
 import { useContext, useEffect } from "react"
 import { SearchContext } from "../context/SearchContext"
 import useBusinesses from "../hooks/useBusinesses"
+import SearchBar from "../components/SearchBar"
 import BusinessResultsList from "../components/BusinessResultsList"
 
 const SearchScreen = () => {
@@ -11,10 +11,12 @@ const SearchScreen = () => {
   // custom hook to make the api request
   const [searchApi, results, errorMessage] = useBusinesses(searchTerm)
 
+  // run search when search term changes
   useEffect(() => {
     searchApi(searchTerm)
   }, [searchTerm])
 
+  // filter results by price
   const filterResultsByPrice = (price) => {
     return results.filter((result) => result.price === price)
   }
@@ -22,11 +24,10 @@ const SearchScreen = () => {
   return (
     <View style={styles.backgroundStyle}>
       <SearchBar />
-
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <ScrollView>
         <BusinessResultsList
-          title="Cost Effective"
+          title="Cheap Eats"
           results={filterResultsByPrice("$")}
         />
         <BusinessResultsList
@@ -38,7 +39,7 @@ const SearchScreen = () => {
           results={filterResultsByPrice("$$$")}
         />
         <BusinessResultsList
-          title="Ballin'"
+          title="Ball Out"
           results={filterResultsByPrice("$$$$")}
         />
       </ScrollView>
