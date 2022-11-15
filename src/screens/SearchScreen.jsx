@@ -15,8 +15,6 @@ const SearchScreen = () => {
     searchApi(searchTerm)
   }, [searchTerm])
 
-  console.log({ results })
-
   const filterResultsByPrice = (price) => {
     return results.filter((result) => result.price === price)
   }
@@ -24,9 +22,7 @@ const SearchScreen = () => {
   return (
     <View style={styles.backgroundStyle}>
       <SearchBar />
-      <Text style={styles.resultText}>
-        We have found {results.length} results
-      </Text>
+
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <ScrollView>
         <BusinessResultsList

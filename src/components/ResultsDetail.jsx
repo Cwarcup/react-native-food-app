@@ -2,7 +2,9 @@ import { StyleSheet, Text, View, Image } from "react-native"
 
 const ResultsDetail = ({ result }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container}
+      on
+    >
       <Image style={styles.image} source={{ uri: result.image_url }} />
       <Text style={styles.title}>{result.name}</Text>
       <Text style={styles.subtext}>

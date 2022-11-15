@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: 10,
   },
   inputStyle: {
     flex: 1,
